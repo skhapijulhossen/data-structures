@@ -3,11 +3,11 @@
 // Stack Class
 class Stack
 {
-  private:
+private:
     int size, top;
     int *array;
 
-  public:
+public:
     Stack(int size)
     {
         this->size = size;
@@ -35,7 +35,7 @@ class Stack
             return -999;
         }
         data = this->array[top];
-        this->array[top] = NULL;
+        this->array[top] = -1;
         this->top--;
         return data;
     }
@@ -68,6 +68,11 @@ class Stack
         }
         return false;
     }
+
+    int free()
+    {
+        return this->size - this->top -1;
+    }
 };
 
 // main
@@ -78,7 +83,7 @@ int main(int argc, char *argv[])
     do
     {
         std::cout << "\n=======Choose======" << std::endl;
-        std::cout << "1.Push || 2.Pop || 3.show || 4.Peek || 5. isEmpy : ";
+        std::cout << "1.Push || 2.Pop || 3.show || 4.Peek || 5. isEmpy || 6.free : ";
         std::cin >> option;
         switch (option)
         {
@@ -99,6 +104,9 @@ int main(int argc, char *argv[])
             break;
         case 5:
             std::cout << "\nEmpty: " << stack.isEmpty();
+            break;
+        case 6:
+            std::cout << "\nAvailable Space: " << stack.free();
             break;
         default:
             std::cout << "\nChoose Valid Option";
