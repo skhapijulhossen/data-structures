@@ -71,7 +71,7 @@ public:
 
     int free()
     {
-        return this->size - this->top -1;
+        return this->size - this->top - 1;
     }
 };
 
