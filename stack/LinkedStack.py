@@ -1,17 +1,12 @@
 # Implemntation of Stack using LinkedList
 
 # Node Class to store data and Linked Node
-from numpy import true_divide
-
-
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
         self.prev = None
 
 # LinkedStack class to maintain Stack
-
-
 class LinkedStack:
     def __init__(self, size: int) -> None:
         self.size = size
