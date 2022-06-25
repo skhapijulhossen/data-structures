@@ -10,7 +10,7 @@ class Queue:
     """
 
     def __init__(self, size: int = 100, dtype: str = 'int') -> None:
-        self.size = size
+        self.size = size - 1
         self.dtypes = {'int': int, 'float': float,
                        'string': str, 'complex': complex}
         self.dtype = self.dtypes.get(dtype) if self.dtypes.get(
@@ -18,7 +18,7 @@ class Queue:
         self.queue = np.zeros((size,), dtype=self.dtype)
         self.front = -1
         self.rear = -1
-        self.free = size
+        self.free = size - 1
 
     def enqueue(self, data: int) -> bool:
         if self.free == 0:
@@ -27,8 +27,6 @@ class Queue:
         if type(data) != self.dtype:
             print("TypeError!")
             return False
-        if self.rear == self.size - 1:
-            self.rear = 0
         self.queue[self.rear] = data
         self.free -= 1
         self.rear += 1
@@ -50,14 +48,18 @@ class Queue:
             print("Queue is Empty!")
             return
         tempFront, tempRear = self.front, self.rear
-        while tempFront != tempRear:
-            if tempFront == self.size-1:
-                tempFront = 0
+        count = 0
+        while count < (self.size - self.free):
             print(self.queue[tempFront], end='=>')
             tempFront += 1
+            tempFront %= self.size
+            count += 1
 
-    def freeSpace(self) -> str:
+    def freeSpace(self) -> int:
         return self.free
+
+    def peek(self) -> int:
+        return self.queue[self.front]
 
 
 if __name__ == '__main__':
@@ -78,5 +80,7 @@ if __name__ == '__main__':
             print(f'AVailable Space: {queue.freeSpace()}')
         elif option == '6':
             queue.show()
+        if option == '-1':
+            exit()
         else:
             print("Choose Valid Option")
