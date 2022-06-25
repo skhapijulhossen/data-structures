@@ -44,19 +44,20 @@ class Queue:
         self.front += 1
         self.free += 1
         return data
-    
+
     def show(self):
         if self.free == self.size:
             print("Queue is Empty!")
             return
-        tempFront, tempRear = self.front , self.rear
+        tempFront, tempRear = self.front, self.rear
         while tempFront != tempRear:
             if tempFront == self.size-1:
                 tempFront = 0
             print(self.queue[tempFront], end='=>')
             tempFront += 1
 
-
+    def freeSpace(self) -> str:
+        return self.free
 
 if __name__ == '__main__':
     queue = Queue(5)
@@ -73,7 +74,7 @@ if __name__ == '__main__':
         elif option == '4':
             print(f'Is Empty: {queue.isEmpty()}')
         elif option == '5':
-            print(f'AVailable Space: {queue.free()}')
+            print(f'AVailable Space: {queue.freeSpace()}')
         elif option == '6':
             queue.show()
         else:
