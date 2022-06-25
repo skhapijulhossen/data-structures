@@ -32,16 +32,16 @@ class Queue:
         self.queue[self.rear] = data
         self.free -= 1
         self.rear += 1
+        self.rear %= self.size
         return True
 
     def dequeue(self):
         if self.free == self.size:
             print("Queue is Empty!")
             return None
-        if self.front == self.size - 1:
-            self.front = 0
         data = self.queue[self.front]
         self.front += 1
+        self.front %= self.size
         self.free += 1
         return data
 
@@ -58,6 +58,7 @@ class Queue:
 
     def freeSpace(self) -> str:
         return self.free
+
 
 if __name__ == '__main__':
     queue = Queue(5)
