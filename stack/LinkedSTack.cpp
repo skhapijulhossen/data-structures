@@ -56,19 +56,20 @@ public:
         if (this->count == 0)
         {
             std::cout << "\nStack Underflow";
-            return -999;
+            return -1;
         }
         data = this->top->data;
         this->top = this->top->prev;
         this->count--;
         return data;
     }
+
     int peek()
     {
         if (this->count == 0)
         {
             std::cout << "\nStack Underflow";
-            return -999;
+            return -1;
         }
         return this->top->data;
     }
