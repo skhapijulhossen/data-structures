@@ -6,7 +6,7 @@ import array
 class Stack:
     """
     This Class will implement the Stack data Structure With a Given Size: 
-    Operations: push(), pop(), peek(), isEmpty(), free(), add(), sub(), mul(), div(), mod(), power()
+    Operations: push(), pop(), peek(), isEmpty(), free()
     """
 
     def __init__(self, size: int = 100) -> None:
