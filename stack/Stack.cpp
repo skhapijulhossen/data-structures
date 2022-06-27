@@ -16,6 +16,7 @@ public:
         std::cout << "Stack Initialized";
     }
 
+    //
     bool push(int data)
     {
         if (this->top < this->size - 1)
@@ -26,49 +27,47 @@ public:
         std::cout << "Stack Overflow Error!" << std::endl;
         return false;
     }
+
+    //
     int pop()
     {
-        int data;
         if (this->top == -1)
         {
-            std::cout << "\nStack Underflow";
-            return -999;
+            std::cout << "\nStack Underflow Error!";
+            return -1;
         }
-        data = this->array[top];
-        this->array[top] = -1;
-        this->top--;
-        return data;
-    }
-    int peek()
-    {
-        int data;
-        if (this->top == -1)
-        {
-            std::cout << "\nStack Underflow";
-            return -999;
-        }
-        data = this->array[top];
-        return data;
+        return this->array[this->top--];
     }
 
+    //
+    int peek()
+    {
+        if (this->top == -1)
+        {
+            std::cout << "\nStack Underflow";
+            return -1;
+        }
+        return this->array[top];
+    }
+
+    //
     void show()
     {
-        for (int i = 0; i <= this->top; i++)
+        for (int i = 0; i <= this->top; ++i)
         {
             std::cout << " ->" << this->array[i];
         }
         std::cout << std::endl;
+        return;
     }
 
+    //
     bool isEmpty()
     {
-        if (this->top == -1)
-        {
-            return true;
-        }
-        return false;
+        return this->top == -1 ? true : false;
     }
 
+    //
     int free()
     {
         return this->size - this->top - 1;
